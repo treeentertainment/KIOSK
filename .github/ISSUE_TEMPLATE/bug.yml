@@ -1,5 +1,5 @@
 name: 오류 신고
-description: 오류 신고 폼 입니다.
+description: 오류 신고 템플릿
 title: "[버그]"
 labels: 
   - bug
