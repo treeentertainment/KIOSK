@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css&logoColor=white">
 <img src="https://img.shields.io/badge/firebase-DD2C00?style=for-the-badge&logo=firebase&logoColor=white">
 
-> ## 설치 방법
+> ## 다운로드
 
 [![Static Badge](https://img.shields.io/badge/download-v4-blue?style=for-the-badge&logo=github)
 ](https://github.com/treeentertainment/KIOSK/releases/V4)
