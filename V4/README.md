@@ -9,13 +9,8 @@
 
 > ## 설치 방법
 
-1. [다운로드](https://github.com/treeentertainment/KIOSK/releases/latest)
-
-2. 설치
-
-3. 로그인 및 개인 정보 입력
-
-4. 완료
+[![Static Badge](https://img.shields.io/badge/download-v4-blue?style=for-the-badge&logo=github)
+](https://github.com/treeentertainment/KIOSK/releases/V4)
 
 > ## 업데이트 상황
 
@@ -24,7 +19,8 @@
 
 > ## 저작권
 
-[@202420505](https://github.com/202420505)
+[![Static Badge](https://img.shields.io/badge/Q-green?style=for-the-badge&logo=github)
+](https://github.com/202420505)
 
 > ## 문의
 
