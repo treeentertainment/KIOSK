@@ -10,8 +10,8 @@
 
 > ## 다운로드
 
-[![Static Badge](https://img.shields.io/badge/download-v3-blue?style=for-the-badge&logo=github)
-](https://github.com/treeentertainment/KIOSK/releases/latest)
+[![Static Badge](https://img.shields.io/badge/download-v3.1-blue?style=for-the-badge&logo=github)
+](https://github.com/treeentertainment/KIOSK/releases/3.1)
 
 > ## 업데이트 상황
 
