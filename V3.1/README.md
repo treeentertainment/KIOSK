@@ -8,19 +8,10 @@
 <img src="https://img.shields.io/badge/Neutralinojs-F89901?style=for-the-badge&logo=neutralinojs&logoColor=white">
 <img src="https://img.shields.io/badge/Appwrite-FD366E?style=for-the-badge&logo=appwrite&logoColor=white">
 
-> ## 방문 수
+> ## 다운로드
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ftreeentertainment%2FKIOSK%2Ftree%2Fmain%2FV3.1&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%EB%B0%A9%EB%AC%B8%EC%9E%90+%EC%88%98&edge_flat=false)](https://hits.seeyoufarm.com)
-
-> ## 설치 방법
-
-1. [다운로드](https://github.com/treeentertainment/KIOSK/releases/latest)
-
-2. 설치
-
-3. 로그인 및 개인 정보 입력
-
-4. 완료
+[![Static Badge](https://img.shields.io/badge/download-v3-blue?style=for-the-badge&logo=github)
+](https://github.com/treeentertainment/KIOSK/releases/latest)
 
 > ## 업데이트 상황
 
