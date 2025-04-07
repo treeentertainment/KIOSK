@@ -16,7 +16,8 @@
 
 [✅V3.1](https://github.com/treeentertainment/KIOSK/tree/main/V3.1)
 
-[✅V4](https://github.com/treeentertainment/KIOSK/tree/main/V4)
+[![Static Badge](https://img.shields.io/badge/download-v4-blue?style=for-the-badge&logo=github)
+](https://github.com/treeentertainment/KIOSK/tree/main/V4)
 
 > ## 설치 방법
 
