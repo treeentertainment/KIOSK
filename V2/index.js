@@ -55,6 +55,7 @@
 
     // Click counter and logout function
     let clickCount = 0;
+
     document.getElementById('logout-link').addEventListener('click', async (e) => {
         e.preventDefault(); // Prevent the default link behavior
         clickCount++; // Increment click count
@@ -127,16 +128,3 @@
             console.error('Error during sign out:', error);
         }
     }
-      
-    document.getElementById('logout-link').addEventListener('click', async (e) => {
-        e.preventDefault(); // Prevent the default link behavior
-        clickCount++; // Increment click count
-    
-        if (clickCount === 5) { // Check if clicked 5 times
-            try {
-                await logout();
-            } catch (error) {
-                console.error('Error during sign out:', error);
-            }
-        }
-    });
