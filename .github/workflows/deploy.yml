@@ -23,7 +23,7 @@ jobs:
       - name: Upload `v4/` directory
         uses: actions/upload-pages-artifact@v3
         with:
-          path: v4
+          path: V4
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
