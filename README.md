@@ -41,3 +41,5 @@
 > ## URL
 
 [https://treekiosk.pages.dev](https://treekiosk.pages.dev)
+
+[https://treekiosk.github.io](https://treekiosk.github.io)
