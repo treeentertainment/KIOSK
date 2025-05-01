@@ -15,11 +15,9 @@ const db = firebase.firestore();
 const realtimeDb = firebase.database();
 
 window.onload = function() {
-  const id = new URLSearchParams(window.location.search).get('id');
-  console.log(id);
-  console.log(window.data);
-  selectoption(window.data)
+  selectoption(window.data);
 };
+
 
 var email = JSON.parse(window.localStorage.getItem('email'));
 var number = JSON.parse(window.localStorage.getItem('number'));
@@ -70,261 +68,293 @@ firebase.auth().onAuthStateChanged((user) => {
 function selectoption(data) {
   try {
     const optionform = document.getElementById('optionform');
-
     const optioncontent = document.getElementById('optioncontent');
-    for (const key in optionform.dataset) {
-      delete optionform.dataset[key];
-    }
-    optioncontent.innerHTML = ''; // Clear existing content
-    const center = document.createElement('center');
 
-    const figure = document.createElement('figure');
+    // Clear dataset and previous content
+    for (const key in optionform.dataset) delete optionform.dataset[key];
+    optioncontent.innerHTML = '';
+
+    const center = document.createElement('div');
+    center.style.textAlign = 'center';
+
+    const infowrapper = document.createElement('div');
+    infowrapper.style.display = 'flex';
+    infowrapper.style.alignItems = 'center'; // 수직 정렬
+    infowrapper.style.gap = '16px'; // 이미지와 텍스트 사이 간격
+    infowrapper.style.justifyContent = 'center';
+    infowrapper.style.alignItems = 'center';
+    // Image
     const image = document.createElement('img');
-
-    image.className = 'image is-128x128';
-    image.style.width = '128px';  
+    image.src = `${data.image}?w=400&h=300&fm=webp&q=75&auto=compress,format`;
+    image.id = "optionimg";
+    image.style.width = '128px';
     image.style.height = '128px';
     image.style.objectFit = 'cover';
-    image.src = data.image;
     image.style.borderRadius = '30px';
-    image.id = 'optionimg';
-    figure.appendChild(image);
-    center.appendChild(figure);
-
-    const title = document.createElement('h1');
-    title.className = 'title name';  
-    title.textContent = data.name;
-    center.appendChild(title);
-
-    const subtitle = document.createElement('h2');
-    subtitle.className = 'subtitle';    
-    subtitle.id = 'optionprice';
-    subtitle.textContent = data.price;
-    center.appendChild(subtitle);
+    infowrapper.appendChild(image);
     
+    // 텍스트 wrapper
+    const textWrapper = document.createElement('div');
+    
+    // Name (strong inside h1)
+    const title = document.createElement('h1');
+    title.className = 'name';
+    const bold = document.createElement("strong");
+    bold.innerText = data.name;
+    title.appendChild(bold);
+    textWrapper.appendChild(title);
+    
+    // 가격 wrapper
+    const priceWrapper = document.createElement('div');
+    priceWrapper.style.display = 'inline'; // 또는 'inline-block'
+    
+    const subtitle = document.createElement('h2');
+    subtitle.id = 'optionprice';
+    subtitle.style.display = 'inline';
+    subtitle.textContent = data.price;
+    priceWrapper.appendChild(subtitle);
+    
+    const won = document.createElement('h2');
+    won.id = 'optionwon';
+    won.style.display = 'inline';
+    won.textContent = "원";
+    priceWrapper.appendChild(won);
+    
+    // 가격을 텍스트 wrapper에 추가
+    textWrapper.appendChild(priceWrapper);
+    
+    // 텍스트 wrapper를 infowrapper에 추가
+    infowrapper.appendChild(textWrapper);
+    
+    // center 요소에 추가
+    center.appendChild(infowrapper);
+    
+
+    const space = document.createElement('br');
+    center.appendChild(space);
+
+
     optionform.dataset.id = data.key;
     optionform.dataset.max = data.max;
     optionform.dataset.option = JSON.stringify(data.option);
 
-    if (data.option) {
-      for (let i = 0; i < data.option.length; i++) {
-        if (data.option[i].type === "radio") {
-          const container = document.createElement('div');
-          container.className = 'field';
-          container.id = "radio-" + data.option[i].key;
-
-          const labels = document.createElement('label');
-          labels.className = 'label'; 
-          labels.textContent = data.option[i].name;
-          container.appendChild(labels);  
-
-          const containerr = document.createElement('div');
-          containerr.className = 'buttons has-addons is-centered';
-          for (let j = 0; j < data.option[i].options.length; j++) {
-            const button = document.createElement('button');
-            button.className = `button ${data.option[i].color[j]} is-normal button-group`;
-            button.textContent = data.option[i].options[j].toUpperCase();
-            if(j === data.option[i].default){
-              button.classList.add('is-focused');
-            }
-            button.onclick = function(event) {
-              event.preventDefault(); // 폼 제출 방지         
-              document.querySelectorAll('.button-group').forEach(button => {
-                button.classList.remove('is-focused'); // 모든 버튼의 is-selected 클래스 제거
-              });
-              button.classList.add('is-focused');
-            };
-            containerr.appendChild(button);
-        }
-
-        
-        container.appendChild(containerr);
-        center.appendChild(container);
-
-      }
-        if (data.option[i].type === "range") {
-          const field0 = document.createElement('div');
-          field0.className = 'field';
-
-          const labels = document.createElement('label');
-          labels.className = 'label';
-          labels.textContent = data.option[i].name;
-        
-          field0.appendChild(labels);
-
-          const field = document.createElement('div');
-          field.className = 'field has-addons has-addons-centered';
-          field.id = "range-" + data.option[i].key;
-
-          const control1 = document.createElement('p');
-          control1.className = 'control';
-
-          const minusButton = document.createElement('button');
-          minusButton.className = 'button is-primary';
-          minusButton.textContent = '-';
-          control1.appendChild(minusButton);
-        
-          const control2 = document.createElement('p');
-          control2.className = 'control';
-        
-          const inputs = document.createElement('input');
-          inputs.className = 'input';
-          inputs.type = 'number';
-          inputs.min = data.option[i].min;
-
-          if(data.option[i].max != null) {
-          inputs.max = data.option[i].max;
-          }
-
-          inputs.onchange = function() {
-            if(inputs.value > data.option[i].max && data.option[i].max != null) {
-              inputs.value =  data.option[i].max;      
-              inputs.max =  data.option[i].max;      
     
+    // Options rendering
+    if (data.option) {
+      data.option.forEach((opt) => {
+        
+        if (opt.type === 'radio') {
+          const h4 = document.createElement("h4");
+          const strong = document.createElement("strong");
+          strong.innerText = opt.name;
+          h4.appendChild(strong);
+
+          const chipSet = document.createElement('div');
+          chipSet.id = `radio-${opt.key}`;
+          
+          opt.options.forEach((optVal, idx) => {
+            const chip = document.createElement('button');
+            chip.type = "button"; // 이 줄 추가!
+
+            chip.innerText = optVal.toUpperCase();
+            chip.classList.add("button-chips");
+            chip.classList.add("btn", "btn-lg");
+            if (idx === opt.default) chip.classList.add("btn-primary");
+            chipSet.appendChild(chip);
+          });
+        
+          // 단일 선택 기능 구현
+          chipSet.addEventListener('click', (e) => {
+            if (e.target.classList.contains('button-chips')) {
+              chipSet.querySelectorAll('.button-chips').forEach(chip => {
+                chip.classList.remove("btn-primary");
+              });
+              e.target.classList.add("btn-primary");
+            }
+          });
+          
+          center.appendChild(h4);
+          center.appendChild(chipSet);
+        }
+        
+        
+        const br = document.createElement('br');
+        center.appendChild(br);
+
+        if (opt.type === 'range') {               
+          const h4 = document.createElement("h4");
+          const strong = document.createElement("strong");
+          strong.innerText = opt.name;
+          h4.style.margin = "0";
+          h4.appendChild(strong);
+          
+
+          const rangeWrapper = document.createElement('div');
+          rangeWrapper.id = `range-${opt.key}`;
+          rangeWrapper.classList.add('input-group', 'form-group', 'text-center');
+          rangeWrapper.style.justifyContent = "center"; // center horizontally
+          rangeWrapper.style.display = "flex";
+          rangeWrapper.style.alignItems = "center"; // optional
+
+
+          const minusBtn = document.createElement('button');
+          minusBtn.type = "button";
+          minusBtn.classList.add("btn", "btn-lg");
+          minusBtn.classList.add("input-group-btn");
+
+          const icon = document.createElement('i');
+          icon.classList.add("material-icons");
+          icon.textContent = "do_not_disturb_on"; // 예: 'edit', 'delete', 'menu' 등 Material Icons 이름
+          minusBtn.appendChild(icon);
+
+          const input = document.createElement('input');
+          input.type = 'number';
+          input.value = 0;
+          input.min = opt.min;
+          input.id = `input-${opt.key}`
+          input.classList.add('optionquantity', 'form-input', "input-lg", 'text-center');
+          input.style.textAlign = 'center'; // 텍스트 가운데 정렬
+          input.style.textAlignLast = 'center'; // 숫자 가운데 정렬 (크로스 브라우저 호환성)
+          input.setAttribute('readonly', 'true');
+          
+          if (opt.max != null) input.max = opt.max;
+
+
+          const plusBtn = document.createElement('button');
+          plusBtn.type = "button";
+          plusBtn.classList.add("btn", "btn-lg");
+          plusBtn.classList.add("input-group-btn");
+
+          const iconplus = document.createElement('i');
+          iconplus.classList.add("material-icons");
+          iconplus.textContent = "add_circle"; // 예: 'edit', 'delete', 'menu' 등 Material Icons 이름
+          plusBtn.appendChild(iconplus);
+
+          minusBtn.onclick = (e) => {
+            e.preventDefault();
+            let val = parseInt(input.value) || 0;
+            if (val > 0) {
+              input.value = val - 1;
+              subtitle.textContent = Number(subtitle.textContent) - Number(opt.price);
             }
           };
 
-          inputs.value = 0;
-          inputs.classList.add('optionquantity');
-          inputs.placeholder = '수량';
-
-          control2.appendChild(inputs);
-
-          const control3 = document.createElement('p');
-          control3.className = 'control';
-        
-          const plusButton = document.createElement('button');
-          plusButton.className = 'button is-primary';
-          plusButton.textContent = '+';
-          control3.appendChild(plusButton);
-
-          field.appendChild(control1);
-          field.appendChild(control2);
-          field.appendChild(control3);
-                
-          // Add event listeners for the buttons
-          minusButton.addEventListener('click', (event) => {
-            event.preventDefault(); // 폼 제출 방지
-          
-            let currentValue = parseInt(inputs.value) || 0;
-            if (currentValue > 0) {
-              inputs.value = currentValue - 1;
-              subtitle.textContent = Number(subtitle.textContent) - Number(data.option[i].price);
+          plusBtn.onclick = (e) => {
+            e.preventDefault();
+            let val = parseInt(input.value) || 0;
+            if (val < opt.max || opt.max == null) {
+              input.value = val + 1;
+              subtitle.textContent = Number(subtitle.textContent) + Number(opt.price);
             }
-          });
-        
-          plusButton.addEventListener('click', (event) => {
-            event.preventDefault(); // 폼 제출 방지
-    
-            let currentValue = parseInt(inputs.value) || 0;
-    
-            if (currentValue < data.option[i].max || data.option[i].max === "null") {
-              inputs.value = currentValue + 1;
-              subtitle.textContent = Number(subtitle.textContent) + Number(data.option[i].price);
-            }
+          };
 
-            
-          });
-        
-          center.appendChild(field0);
-          center.appendChild(field);
+          rangeWrapper.appendChild(minusBtn);
+          rangeWrapper.appendChild(input);
+          rangeWrapper.appendChild(plusBtn);
+
+          center.appendChild(h4);
+          center.appendChild(rangeWrapper);
         }
-      }
-      
+      });
     }
-      const field0 = document.createElement('div');
-      field0.className = 'field';
-
-      const labels = document.createElement('label');
-      labels.className = 'label';
-      labels.textContent = "수량";
-
-      field0.appendChild(labels);
 
 
-      const field = document.createElement('div');
-      field.className = 'field has-addons has-addons-centered';
-    
-      const control1 = document.createElement('p');
-      control1.className = 'control';
-    
-      const minusButton = document.createElement('button');
-      minusButton.className = 'button is-primary';
-      minusButton.textContent = '-';
-      control1.appendChild(minusButton);
-    
-      const control2 = document.createElement('p');
-      control2.className = 'control';
-    
-      const inputs = document.createElement('input');
-      inputs.className = 'input optionquantity';
-      inputs.type = 'number';
-      inputs.min = 1;
+    const br = document.createElement('br');
+    center.appendChild(br);
 
-      const existingIndex = getItemIndex(data.key.toString()); // Check if item exists based on id and options
-      var order = getOrder(); // Get the latest order
-      var maxvalue = data.max;
 
-      if (existingIndex !== -1  && order[existingIndex].max != "null") {
-        maxvalue = data.max - order[existingIndex].quantity;
-        if (maxvalue <= 0 && maxvalue != "null") { 
-          isfull();
-          return;
-        } else if (maxvalue != "null") {
-          inputs.max = maxvalue;
-        }
-      } else if (maxvalue != "null") {
-        inputs.max = maxvalue;
+    const quantityWrapper = document.createElement('div');
+    quantityWrapper.classList.add('input-group', 'form-group', 'text-center');
+    quantityWrapper.style.justifyContent = "center"; // center horizontally
+    quantityWrapper.style.display = "flex";
+    quantityWrapper.style.alignItems = "center"; // optional
+
+    const h4 = document.createElement("h4");
+    h4.classList.add('text-center');
+    h4.style.margin = "0";
+    h4.style.textAlign = 'center';   // 명시적으로 가운데 정렬
+
+    const strong = document.createElement("strong");
+    strong.innerText = "수량";
+
+    h4.appendChild(strong);
+    center.appendChild(h4);
+
+
+    const minusBtn = document.createElement('button');
+    minusBtn.type = "button";
+    minusBtn.classList.add("btn", "btn-lg");
+    minusBtn.classList.add("input-group-btn");
+
+    const icon = document.createElement('i');
+    icon.classList.add("material-icons");
+    icon.textContent = "do_not_disturb_on"; // 예: 'edit', 'delete', 'menu' 등 Material Icons 이름
+    minusBtn.appendChild(icon);
+
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.min = 1;
+    input.value = 1;
+    input.id = 'optionquantity';
+    input.classList.add('optionquantity', 'form-input', "input-lg", 'text-center');
+    input.style.textAlign = 'center'; // 텍스트 가운데 정렬
+    input.style.textAlignLast = 'center'; // 숫자 가운데 정렬 (크로스 브라우저 호환성)
+
+    input.setAttribute('readonly', 'true');
+
+    let maxvalue = data.max;
+    const existingIndex = getItemIndex(data.key.toString(), data.option);
+    const order = getOrder();
+    if (existingIndex !== -1 && order[existingIndex].max !== "null") {
+      maxvalue = data.max - order[existingIndex].quantity;
+      if (maxvalue <= 0) {
+        isfull();
+        return;
+      } else {
+        input.max = maxvalue;
       }
-      
+    } else if (maxvalue !== "null") {
+      input.max = maxvalue;
+    }
 
-      inputs.value = 1;
-      inputs.id = 'optionquantity';
-      inputs.placeholder = '수량';
-      control2.appendChild(inputs);
-    
-      const control3 = document.createElement('p');
-      control3.className = 'control';
-    
-      const plusButton = document.createElement('button');
-      plusButton.className = 'button is-primary';
-      plusButton.textContent = '+';
-      control3.appendChild(plusButton);
-    
-      // Add controls to the field container
-      field.appendChild(control1);
-      field.appendChild(control2);
-      field.appendChild(control3);
-    
-      // Add event listeners for the buttons
-      minusButton.addEventListener('click', (event) => {
-        event.preventDefault(); // 폼 제출 방지
+    const plusBtn = document.createElement('button');
+    plusBtn.type = "button";
+    plusBtn.classList.add("btn", "btn-lg");
+    plusBtn.classList.add("input-group-btn");
 
-        let currentValue = parseInt(inputs.value) || 0;
-        if (currentValue > 1) {
-          inputs.value = currentValue - 1;
-          subtitle.textContent = Number(subtitle.textContent) - Number(data.price);
-        }
-      });
-    
-      plusButton.addEventListener('click', (event) => {
-        event.preventDefault(); // 폼 제출 방지
-        let currentValue = parseInt(inputs.value) || 0;
+    const iconplus = document.createElement('i');
+    iconplus.classList.add("material-icons");
+    iconplus.textContent = "add_circle"; // 예: 'edit', 'delete', 'menu' 등 Material Icons 이름
+    plusBtn.appendChild(iconplus);
 
-        if (currentValue < maxvalue || maxvalue === "null") {
-          inputs.value = currentValue + 1;
-          subtitle.textContent = Number(subtitle.textContent) + Number(data.price);
-        }
-      });
-    
-      center.appendChild(field0);
-      center.appendChild(field);
+    minusBtn.onclick = (e) => {
+      e.preventDefault();
+      let val = parseInt(input.value) || 1;
+      if (val > 1) {
+        input.value = val - 1;
+        subtitle.textContent = Number(subtitle.textContent) - Number(data.price);
+      }
+    };
 
-      optioncontent.appendChild(center);
-    } catch (error) {
+    plusBtn.onclick = (e) => {
+      e.preventDefault();
+      let val = parseInt(input.value) || 1;
+      if (val < maxvalue || maxvalue === "null") {
+        input.value = val + 1;
+        subtitle.textContent = Number(subtitle.textContent) + Number(data.price);
+      }
+    };
+
+    quantityWrapper.appendChild(minusBtn);
+    quantityWrapper.appendChild(input);
+    quantityWrapper.appendChild(plusBtn);
+
+    center.appendChild(quantityWrapper);
+    optioncontent.appendChild(center);
+  } catch (e) {
     window.close();
-    }
-}  
+  }
+}
 
 function addorder() {
     const form = document.getElementById('optionform');
@@ -332,7 +362,7 @@ function addorder() {
     const max = form.dataset.max;
     const name = document.querySelector('.name')?.innerText;
     const image = document.querySelector('#optionimg').src;
-    const price = Number(document.querySelector('#optionform .subtitle').textContent);
+    const price = Number(document.querySelector('#optionprice').textContent);
     const quantity = Number(document.querySelector('#optionquantity').value);
     let jsons; 
     try {
@@ -346,13 +376,15 @@ function addorder() {
     console.log(jsons.length);
     for(let i = 0; i < jsons.length; i++) {
 
-      if(jsons[i].type === "radio") {
+      if (jsons[i].type === "radio") {
         const optionele = document.querySelector(`#radio-${jsons[i].key}`);
-        var values = optionele.querySelector(".is-focused").innerText;
-      } else if(jsons[i].type === "range") {
+        const selectedChip = optionele.querySelector('.btn-primary');
+        var values = selectedChip ? selectedChip.innerText : null;
+      } else if (jsons[i].type === "range") {
         const optionele = document.querySelector(`#range-${jsons[i].key}`);
         var values = optionele.querySelector(".optionquantity").value;
       }
+      
 
       newjsons.push({ name: jsons[i].name, value: values });
     };
@@ -361,33 +393,36 @@ function addorder() {
 }
 
 function addItemToOrder({ id, image, name, price, quantity, options, max }) {
-    const existingIndex = getItemIndex(id); // Check if item exists based on id and options
-    let order = getOrder(); // Get the latest order
+  const existingIndex = getItemIndex(id, options);
+  let order = getOrder(); // Get the latest order
 
     if (existingIndex !== -1) {
         // Update existing item: add quantity and recalculate total price
         order[existingIndex].quantity += quantity;
         order[existingIndex].price = order[existingIndex].pricePerUnit * order[existingIndex].quantity;
     } else {
-        // Add new item: Store price per unit for future calculations
-        order.push({ id, image, name, quantity, price: price * quantity, pricePerUnit: price, options, max });
+       var itemnumber = order.length + 1;
+      order.push({ itemnumber, id, image, name, quantity, price: price * quantity, pricePerUnit: price, options, max });
     }
 
     localStorage.setItem('order', JSON.stringify(order)); // Save to localStorage
 
     if(existingIndex !== -1) {
-      window.opener.postMessage({ type: "updateOrder", id: id, quantity: order[existingIndex].quantity }, window.location.origin);
+      window.opener.postMessage({ type: "UpdateOrder", id: id, quantity: order[existingIndex].quantity }, window.location.origin);
     } else {
-      window.opener.postMessage("newOrder", window.location.origin);
+      window.opener.postMessage({type: "newOrder", number: order.length}, window.location.origin);
     }
     window.close(); // Close the window
 }
 
   // Get item index based on id and options (first match by id, then by options)
-function getItemIndex(id) {
-  let order = getOrder(); // Get the latest order
-  return order.findIndex(item => item.id === id);
-}
+  function getItemIndex(id, option) {
+    let order = getOrder(); // Get the latest order
+    return order.findIndex(item => {
+      return item.id === id && JSON.stringify(item.options) === JSON.stringify(option);
+    });
+  }
+  
   
 
 function isfull() {

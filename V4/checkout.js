@@ -13,6 +13,7 @@ const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 const realtimeDb = firebase.database();
+
 var sendButton = document.getElementById('sendButton');
 var input = document.getElementById('numberDisplay');
 var email = JSON.parse(window.localStorage.getItem('email'));
@@ -107,22 +108,29 @@ function getOrder() {
 document.addEventListener("keydown", (event) => {
   if (event.key >= "0" && event.key <= "9") {
       document.getElementsByClassName(event.key)[0].click();  // 숫자 버튼 클릭
-  } else if (event.key === "Enter") {  // 엔터를 누르면 초기화
+  } else if (event.key === "Enter") {  // 엔터를 누르면 제출출
       if(sendButton.style.display === 'block') {
           sendButton.click();
       }
   } else if (event.key === "Backspace") {  // 마지막 숫자 삭제
-    backspace();
+    document.getElementsByClassName(event.key)[0].click(); 
   }
 });
 
 
 document.getElementById('sendButton').addEventListener('click', function() {
-   console.log("sendButton clicked");
-    var order = getOrder();
+  const div = document.querySelector('.keypad'); // 또는 적절한 div 선택자
+  const buttons = div.querySelectorAll('button');
+ 
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+
+  var order = getOrder();
     firebase.database().ref('/people/data/' + number + '/number').once('value').then((snapshot) => {
       var ordernumber = snapshot.val();
       orderlist = [];
+      orderlist.push(document.getElementById('numberDisplay').value);
       order.forEach((item) => {
          orderlist.push({id: item.id, quantiity: item.quantity, name: item.name, options: item.options});
       });
