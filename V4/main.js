@@ -467,15 +467,16 @@ function submitorder(event) {
 }
 
 function gohome() {
-  document.getElementById("areyousure").close();
+  document.getElementById("areyousure").classList.remove("active");
   window.localStorage.removeItem('order');
-  window.location.href = "/index.html"
+  window.location.href = "index.html";
+  
 }
 
 document.getElementById("gohome").addEventListener("click", function () {
-  document.getElementById("areyousure").show();
+ document.getElementById("areyousure").classList.add("active");
 });
 
 function gocancel() {
-document.getElementById("areyousure").close();
+document.getElementById("areyousure").classList.remove("active");
 }
