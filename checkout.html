@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <title>TREE KIOSK V4</title>
+    <link rel="stylesheet" href="checkout.css">
+    <!-- Spectre.css 기본 + 확장 + 아이콘 -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="box">
+        <center>
+      <h1>
+        TREE KIOSK V4
+      </h1>
+      <h2 class="subtitle">
+        전화번호를 입력해주세요
+      </h2>
+    </center>
+    </div>
+    <div class="phone-number text-center keypad">
+  <center>
+    <input type="text" id="numberDisplay" class="input" placeholder="전화번호" value="010-" style="text-align: center;" readonly>
+    <br><br>
+    
+    <!-- 키패드 버튼들 -->
+    <div class="keypad">
+      <button class="button key btn btn-lg 1" onclick="appendNumber(1)">1</button>
+      <button class="button key btn btn-lg 2" onclick="appendNumber(2)">2</button>
+      <button class="button key btn btn-lg 3" onclick="appendNumber(3)">3</button>
+      <button class="button key btn btn-lg 4" onclick="appendNumber(4)">4</button>
+      <button class="button key btn btn-lg 5" onclick="appendNumber(5)">5</button>
+      <button class="button key btn btn-lg 6" onclick="appendNumber(6)">6</button>
+      <button class="button key btn btn-lg 7" onclick="appendNumber(7)">7</button>
+      <button class="button key btn btn-lg 8" onclick="appendNumber(8)">8</button>
+      <button class="button key btn btn-lg 9" onclick="appendNumber(9)">9</button>
+      <button class="button key btn btn-lg btn-error" onclick="clearDisplay()"><i class="material-icons">cleaning_services</i></button>
+      <button class="button key btn btn-lg 0" onclick="appendNumber(0)">0</button>
+      <button class="button key btn btn-lg btn-primary Backspace" onclick="backspace()"><i class="material-icons">backspace</i></button>
+    </div>
+
+    <br>
+    <button class="button btn btn-lg btn-success" id="sendButton" style="display: none; width: 200px; height: 50px;">전송</button>
+  </center>
+</div>
+  </div>  
+  </div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database-compat.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html> 

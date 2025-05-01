@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+.card-footer {
+    width: 300px;
+}
+
+input[type="number"] {
+    max-width: 30%;
+    text-align: center;  /* 텍스트 내 줄바꿈 요소들도 가운데 정렬 */
+    display: block;      /* flex 대신 block으로 변경 */
+}
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari에서 기본 화살표 제거 */
+    margin: 0;
+}

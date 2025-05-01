@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TREE KIOSK V4</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+       <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="container">
+      <br>
+      <h1 id="logout-link">
+        <strong>
+        TREE KIOSK V4
+      </strong>
+      </h1>
+      <div id="login-container" style="display:none">
+        <center>
+      <button class="startbutton google-login-icon btn btn-lg" onclick="googleProvider()" disabled>구글 로그인 (지원 중단)</button>
+
+      <br>   
+     <h4>OR</h4>
+        <label class="form-label" for="input-example-1">이메일</label>
+        <input class="form-input logins input-lg" type="email" id="email" placeholder="이메일">
+ 
+      <label class="form-label" for="password">비밀번호</label>
+      <input class="form-input logins input-lg" type="password" id="password" placeholder="비밀번호">
+
+      <br>      <br>
+      <button class="btn btn-primary btn-lg" onclick="loginpassword()">로그인</button>
+        
+    </center>
+     </div>
+       <div id="startface" style="display:none">
+          <button onclick="window.location.href='main.html'" class="startbutton btn btn-lg"><strong>시작하기</strong></button>
+      </div>
+    </div>
+
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database-compat.js"></script>
+  <script src="index.js"></script>  
+</body>
+</html> 

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 200px;
+    justify-content: center;
+}
+
+.key {
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    height: 100px !important;
+}
+
+.key:hover {
+    background-color: #f0f0f0;
+}
+
+.key:active {
+    background-color: #e0e0e0;
+}
+
+.phone-number {
+    margin-bottom: 20px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clear-btn {
+    grid-column: span 3;
+    background-color: #ff3860;
+    color: white;
+}
+
+.input-group {
+ width: 50%;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.button {
+    width: 100px;
+    height: 100px;
+}
