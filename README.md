@@ -1,5 +1,13 @@
 # TREE KIOSK SYSTEM
 
+> ## 공지
+
+**2025년 5월 1일 오후 1:00 ~ 1:30경** 코드가 유실 되는 사건이 발생 하였으나 `복구를 완료` 했음을 알려드립니다.
+
+> ## 서비스 상태
+
+[![GITHUB PAGES](https://github.com/treeentertainment/KIOSK/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/treeentertainment/KIOSK/actions/workflows/deploy.yml)
+
 > ## 프로젝트 언어
 
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
