@@ -37,7 +37,7 @@
  - [X] WINDOW
  - [x] Linux
  - [ ] macOS
- - [ ] Android
+ - [X] Android
 
 > ## 저작권
 
@@ -51,3 +51,13 @@
 > ## URL
 
 [https://treekiosk.pages.dev](https://treekiosk.pages.dev)
+
+> ## V4 다운로드
+
+![Android](https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white&color=%233DDC84&link=https://github.com/treeentertainment/KIOSK/releases/download/V4/app-release.apk)
+
+[![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.exe) 
+
+[![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
+
+[![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos) 
