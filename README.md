@@ -58,6 +58,6 @@
 
 [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.exe) 
 
-[![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
 
 [![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos) 
