@@ -61,3 +61,9 @@
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
 
 [![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.dmg) 
+
+> ## License
+
+This project is licensed under a **custom proprietary license**.  
+Unauthorized use, modification, or distribution is prohibited.  
+To obtain a commercial license, see [LICENSE.md](./LICENSE.md) or contact [moonlight10529@gmail.com].
