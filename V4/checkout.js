@@ -132,7 +132,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
       orderlist = [];
       orderlist.push(document.getElementById('numberDisplay').value);
       order.forEach((item) => {
-         orderlist.push({id: item.id, quantiity: item.quantity, name: item.name, options: item.options});
+         orderlist.push({id: item.id, quantity: item.quantity, name: item.name, options: item.options});
       });
 
       firebase.database().ref('people/data/' + number + '/order/' + ordernumber).set(orderlist, (error) => {
