@@ -34,7 +34,7 @@
 > ## 업데이트 상황
 
  - [X] V4
- - [X] WINDOW
+ - [X] Window
  - [x] Linux
  - [ ] macOS
  - [X] Android
