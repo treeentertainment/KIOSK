@@ -36,7 +36,7 @@
  - [X] V4
  - [X] Window
  - [x] Linux
- - [ ] macOS
+ - [X] macOS
  - [X] Android
 
 > ## 저작권
