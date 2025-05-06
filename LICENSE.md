@@ -3,11 +3,11 @@ Copyright (c) 2025 [TREE ENTERTAINMENT]
 
 All rights reserved.
 
-This software and its associated files (hereafter referred to as "the Software") are the intellectual property of [Your Name]. By accessing, downloading, or using the Software, you agree to the following terms:
+This software and its associated files (hereafter referred to as "the Software") are the intellectual property of [moonlight]. By accessing, downloading, or using the Software, you agree to the following terms:
 
 1. Ownership and Copyright
    - The Software is protected by copyright law.
-   - All rights, including intellectual property rights, are retained by the original author, [Your Name].
+   - All rights, including intellectual property rights, are retained by the original author, [moonlight].
    - You may not claim ownership of the Software, in whole or in part.
 
 2. Permitted Use
@@ -23,7 +23,7 @@ This software and its associated files (hereafter referred to as "the Software")
 
 5. Attribution
    - If you use, demonstrate, or reference the Software in any way, you must retain and clearly display the following attribution:
-     > "This software is developed and copyrighted by [Your Name], 2025."
+     > "This software is developed and copyrighted by [moonlight], 2025."
 
 6. Prohibited Actions
    - You may **not**:
