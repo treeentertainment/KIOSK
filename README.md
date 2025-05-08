@@ -60,13 +60,13 @@
 
 > ## V4 다운로드
 
-![Android](https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white&color=%233DDC84&link=https://github.com/treeentertainment/KIOSK/releases/download/V4/app-release.apk)
+![Android](https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white&color=%233DDC84&link=https://github.com/treeentertainment/KIOSK-ANDROID/releases/download/V4/app-release.apk)
 
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.exe) 
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/treeentertainment/KIOSK-DESKTOP/releases/download/V4/TREE.KIOSK.V4-4.0.0.exe) 
 
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/treeentertainment/KIOSK-DESKTOP/releases/download/V4/TREE.KIOSK.V4-4.0.0.AppImage)
 
-[![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/treeentertainment/KIOSK/releases/download/V4/TREE.KIOSK.V4-4.0.0.dmg) 
+[![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/treeentertainment/KIOSK-DESKTOP/releases/download/V4/TREE.KIOSK.V4-4.0.0.dmg) 
 
 > ## License
 
