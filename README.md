@@ -1,9 +1,10 @@
 # TREE KIOSK SYSTEM
 
-> [!IMPORTANT]  
-> 안드로이드용 REPO 가 있으므로 ANDROID BETA 용은 신규 REPO 에서 사용하시길 바랍니다
-> <br>
-> (기존 OFFICIAL RELEASE 는 이 REPO 에서 계속될 예정 입니다.)
+> ## 저장소
+
+[![Static Badge](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/treeentertainment/KIOSK-ANDROID)
+[![Static Badge](https://img.shields.io/badge/electron-47848F?style=for-the-badge&logo=electron&logoColor=white)](https://github.com/202420505/KIOSK-DESKTOP)
+
 
 > ## 서비스 상태
 
