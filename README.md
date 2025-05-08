@@ -60,7 +60,7 @@
 
 > ## V4 다운로드
 
-![Android](https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white&color=%233DDC84&link=https://github.com/treeentertainment/KIOSK-ANDROID/releases/download/V4/app-release.apk)
+[![Android](https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white&color=%233DDC84)](https://github.com/treeentertainment/KIOSK-ANDROID/releases/download/V4/app-release.apk)
 
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/treeentertainment/KIOSK-DESKTOP/releases/download/V4/TREE.KIOSK.V4-4.0.0.exe) 
 
