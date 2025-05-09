@@ -15,6 +15,16 @@ const db = firebase.firestore();
 const realtimeDb = firebase.database();
 
 window.onload = function() {
+    firebase.database().ref('/people/data/' + number + '/state').on('value', (snapshot) => {
+    const state = snapshot.val();
+    if (state && Number(state.state) > 1) {
+      window.location.href = "index.html"; // 첫 페이지로 이동
+    } else {
+      window.localStorage.setItem('name', JSON.stringify(data.name));
+    }
+  }).catch((error) => {
+     window.location.href = "index.html"; // 첫 페이지로 이동
+    }); 
   selectoption(window.data);
 };
 

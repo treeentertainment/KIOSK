@@ -14,97 +14,68 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const realtimeDb = firebase.database();
 let clickCount = 0;
-
-function googleProvider() {
-  var provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope(['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']);
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-  googleSignInPopup(provider);
-}
-
-function googleSignInPopup(provider) {
-  firebase.auth()
-      .signInWithPopup(provider.setCustomParameters({ prompt: 'select_account' }))
-      .then((result) => {
-          var user = result.user;
-          var originalEmail = user.email;
-          var fixedemail = originalEmail.replace(".", "@");
-
-          window.localStorage.setItem('email', JSON.stringify(fixedemail));
-
-          firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
-              const data = snapshot.val();
-              if (data && data.enabled === true) {
-
-                  firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
-                      const data = snapshot.val();
-                      if (data && data.email === fixedemail) {
-                          window.localStorage.setItem('name', JSON.stringify(data.name));
-                          show("startface", "login-container");
-                        } else {
-                          alert("올바른 데이터가 아니거나 관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
-                          firebase.auth().signOut();
-                          show("login-container", "startface");
-                      }
-                  });
-
-              } else {
-                  alert("관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
-                  firebase.auth().signOut();
-                  show("login-container", "startface");
-              }
-            }).catch((error) => {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              alert(`에러 코드: ${errorCode} 에러 메시지: ${errorMessage}`);
-              show("login-container", "startface");
-          });
-      }).catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert(`에러 코드: ${errorCode} 에러 메시지: ${errorMessage}`);
-          show("login-container", "startface");
-      });
-}
+var moveable = null;
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-      var originalEmail = user.email;
-      var fixedemail = originalEmail.replace(".", "@");
+    var originalEmail = user.email;
+    var fixedemail = originalEmail.replace(".", "@");
 
-      window.localStorage.setItem('email', JSON.stringify(fixedemail));
+    window.localStorage.setItem('email', JSON.stringify(fixedemail));
 
-      firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
+    firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
+      const datacheck = snapshot.val();
+      if (datacheck && datacheck.enabled === true) {
+        window.localStorage.setItem('number', JSON.stringify(datacheck.store));
+        firebase.database().ref('/people/data/' + datacheck.store).once('value').then((snapshot) => {
           const data = snapshot.val();
-          if (data && data.enabled === true) {
-            window.localStorage.setItem('number', JSON.stringify(data.store));
-              firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
-                  const data = snapshot.val();
-                  if (data && data.email === fixedemail) {
-                      window.localStorage.setItem('name', JSON.stringify(data.name));
-                      show("startface", "login-container");
-                    } else {
-                      alert("관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
-                      firebase.auth().signOut();
-                      show("login-container", "startface");
-                  }
-                });
+          if (data && data.email === fixedemail) {
+            
+            // ✅ 실시간으로 state 상태를 감시
+            firebase.database().ref('/people/data/' + datacheck.store + '/state').on('value', (snapshot) => {
+              const state = snapshot.val();
+              if (state && Number(state.state) > 0) {
+                moveable = Number(state.state) !== 2 ? true : false;
+                if (moveable) {
+                  document.getElementById("closeicon").style.display = "block";
+                  document.getElementById("closebutton").style.display = "block";
+                }
+                document.getElementById("modal-name").innerHTML = state.reason.message;
+                document.getElementById("alertbox").classList.add("active");
+                if(state.reason.img !== "null") {
+                  document.getElementById("modal-image").src = state.reason.img;
+                  document.getElementById("modal-image").style.display = "block";
+                }
+              } else {
+               document.getElementById("alertbox").classList.remove("active");
+                window.localStorage.setItem('name', JSON.stringify(data.name));
+                show("startface", "login-container");
+              }
+            });
+
           } else {
-              alert("관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
-              firebase.auth().signOut();
-              show("login-container", "startface");
+            alert("관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
+            firebase.auth().signOut();
+            show("login-container", "startface");
           }
-        }).catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert(`에러 코드: ${errorCode} 에러 메시지: ${errorMessage}`);
-          show("login-container", "startface");
-      });
-      
+        });
+      } else {
+        alert("관리자가 아닙니다. 잠시후 로그아웃 됩니다.");
+        firebase.auth().signOut();
+        show("login-container", "startface");
+      }
+    }).catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(`에러 코드: ${errorCode} 에러 메시지: ${errorMessage}`);
+      show("login-container", "startface");
+    });
+
   } else {
-      show("login-container", "startface"); 
+    show("login-container", "startface");
   }
 });
+
 
 function show(shown, hidden) {
     document.getElementById(shown).style.display='block';
@@ -120,8 +91,6 @@ function show(shown, hidden) {
         localStorage.clear();
         sessionStorage.clear();
         clickCount = 0;
-
-        console.error('finish');
         window.location.reload();  // 강제로 새로고침하여 상태 초기화
     } catch (error) {
         console.error('Error during sign out:', error);
@@ -196,3 +165,10 @@ document.addEventListener("keydown", function (event) {
     loginpassword();
   }
 });
+
+
+function closeModal() {
+  if(moveable) {
+ document.getElementById("alertbox").classList.remove("active");
+ }
+}

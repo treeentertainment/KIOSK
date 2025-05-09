@@ -32,6 +32,20 @@ document.getElementById('services-tab').addEventListener('click', () => setHash(
 
 document.addEventListener("DOMContentLoaded", () => display());
 
+window.onload = function() {
+    firebase.database().ref('/people/data/' + number + '/state').on('value', (snapshot) => {
+    const state = snapshot.val();
+    if (state && Number(state.state) > 1) {
+      window.location.href = "index.html"; // 첫 페이지로 이동
+    } else {
+      window.localStorage.setItem('name', JSON.stringify(data.name));
+    }
+  }).catch((error) => {
+     window.location.href = "index.html"; // 첫 페이지로 이동
+    }); 
+ }
+
+
 window.addEventListener('message', (event) => {  
   if (event.data.type === 'UpdateOrder' && event.origin === window.location.origin) {
     updatequantity(Number(event.data.id), event.data.quantity);
@@ -61,8 +75,15 @@ firebase.auth().onAuthStateChanged((user) => {
             firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
               const data = snapshot.val();
               if (data && data.email === fixedemail) {
+             firebase.database().ref('/people/data/' + datacheck.store + '/state').on('value', (snapshot) => {
+              const state = snapshot.val();
+              if (state && Number(state.state) > 1) {
+               window.location.href = "index.html"; // 첫 페이지로 이동
+              } else {
                 window.localStorage.setItem('name', JSON.stringify(data.name));
-            } else {
+              }
+            });           
+           } else {
                 window.location.href = "index.html"; // 로그인 페이지로 이동
               }
             });
@@ -480,3 +501,4 @@ document.getElementById("gohome").addEventListener("click", function () {
 function gocancel() {
 document.getElementById("areyousure").classList.remove("active");
 }
+
