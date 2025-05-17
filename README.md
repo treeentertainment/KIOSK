@@ -1,9 +1,5 @@
 # TREE KIOSK SYSTEM
 
-> ## 공지
-
-**안드로이드와 Window, Linux, macOS 은 다른 저장소에서 릴리스 될 예정 입니다.**
-
 > ## 저장소
 
 [![Static Badge](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/treeentertainment/KIOSK-ANDROID)
