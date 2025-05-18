@@ -74,7 +74,7 @@ firebase.auth().onAuthStateChanged((user) => {
           const datacheck = snapshot.val();
           if (datacheck && datacheck.enabled === true) {
 
-            firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
+            firebase.database().ref('/people/data/' + datacheck.store).once('value').then((snapshot) => {
               const data = snapshot.val();
               if (data && data.email === fixedemail) {
              firebase.database().ref('/people/data/' + datacheck.store + '/state').on('value', (snapshot) => {
