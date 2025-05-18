@@ -255,11 +255,11 @@ function display() {
       return card;
     }
 
-    const cafe = snapshot.val().cafe;
+    const data = snapshot.val();
     const allItems = [
-      ...(cafe.drinks || []).map(item => ({ ...item, type: 'drink' })),
-      ...(cafe.foods || []).map(item => ({ ...item, type: 'food' })),
-      ...(cafe.service || []).map(item => ({ ...item, type: 'service' }))
+      ...(data.cafe.drinks || []).map(item => ({ ...item, type: 'drink' })),
+      ...(data.cafe.foods || []).map(item => ({ ...item, type: 'food' })),
+      ...(data.services || []).map(item => ({ ...item, type: 'service' }))
     ];
 
     const fragment = document.createDocumentFragment();
