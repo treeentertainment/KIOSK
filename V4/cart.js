@@ -20,6 +20,8 @@ window.onload = function() {
       const state = snapshot.val();
       if (state && Number(state.state) > 1) {
         window.location.href = "index.html"; // 첫 페이지로 이동
+      } else {
+       selectoption(window.data);
       }
     });
   } catch (error) {
