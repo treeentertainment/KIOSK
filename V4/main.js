@@ -13,6 +13,7 @@ const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();    
 const realtimeDb = firebase.database();
+
 var email = JSON.parse(window.localStorage.getItem('email'));
 var number = JSON.parse(window.localStorage.getItem('number'));
 var name = JSON.parse(window.localStorage.getItem('name'));
@@ -33,15 +34,18 @@ document.getElementById('services-tab').addEventListener('click', () => setHash(
 document.addEventListener("DOMContentLoaded", () => display());
 
 window.onload = function() {
+  try {
     firebase.database().ref('/people/data/' + number + '/state').on('value', (snapshot) => {
-    const state = snapshot.val();
-    if (state && Number(state.state) > 1) {
-      window.location.href = "index.html"; // 첫 페이지로 이동
-    }
-  }).catch((error) => {
-     window.location.href = "index.html"; // 첫 페이지로 이동
-    }); 
- }
+      const state = snapshot.val();
+      if (state && Number(state.state) > 1) {
+        window.location.href = "index.html"; // 첫 페이지로 이동
+      }
+    });
+  } catch (error) {
+    window.location.href = "index.html"; // 첫 페이지로 이동
+  }
+};
+
 
 
 window.addEventListener('message', (event) => {  
