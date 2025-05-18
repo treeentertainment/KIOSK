@@ -162,6 +162,25 @@ function display() {
       card.setAttribute('interactive', '');
       card.style.height = "300px";
       card.style.width = "100px";
+        
+      if(item.status === false) {
+          card.style.pointerEvents = 'none';
+          card.style.opacity = '0.5';
+        
+          const overlay = document.createElement('div');
+          overlay.textContent = '품절';
+          overlay.style.position = 'absolute';
+          overlay.style.width = '100%';
+          overlay.style.height = '100%';
+          overlay.style.display = 'flex';
+          overlay.style.justifyContent = 'center';
+          overlay.style.alignItems = 'center';
+          overlay.style.zIndex = '10';
+          overlay.style.background = 'rgba(255, 255, 255, 0.6)';
+
+          card.style.position = 'relative'; // 부모가 relative여야 자식 absolute가 작동
+          card.appendChild(overlay);
+        }
 
       card.onclick = function(event) {
         selectoption(event, item);
