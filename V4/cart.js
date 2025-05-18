@@ -322,6 +322,8 @@ function selectoption(data) {
       if (maxvalue <= 0) {
         isfull();
         return;
+      } else if(data.status === false) {
+        window.close();
       } else {
         input.max = maxvalue;
       }
