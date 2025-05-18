@@ -20,14 +20,16 @@ var email = JSON.parse(window.localStorage.getItem('email'));
 var number = JSON.parse(window.localStorage.getItem('number'));
 
 window.onload = function() {
+  try {
     firebase.database().ref('/people/data/' + number + '/state').on('value', (snapshot) => {
-    const state = snapshot.val();
-    if (state && Number(state.state) > 1) {
-      window.location.href = "index.html"; // 첫 페이지로 이동
-    }
-  }).catch((error) => {
-     window.location.href = "index.html"; // 첫 페이지로 이동
-    }); 
+      const state = snapshot.val();
+      if (state && Number(state.state) > 1) {
+        window.location.href = "index.html"; // 첫 페이지로 이동
+      }
+    });
+  } catch (error) {
+    window.location.href = "index.html"; // 첫 페이지로 이동
+  }
 };
 
 firebase.auth().onAuthStateChanged((user) => {
