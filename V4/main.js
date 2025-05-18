@@ -71,8 +71,8 @@ firebase.auth().onAuthStateChanged((user) => {
         window.localStorage.setItem('email', JSON.stringify(fixedemail));
 
         firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
-          const data = snapshot.val();
-          if (data && data.enabled === true) {
+          const datacheck = snapshot.val();
+          if (datacheck && datacheck.enabled === true) {
 
             firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
               const data = snapshot.val();
