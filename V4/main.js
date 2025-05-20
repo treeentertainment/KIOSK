@@ -101,30 +101,19 @@ firebase.auth().onAuthStateChanged((user) => {
 });
     
 function updatePage() {
-  let hash = location.hash.substring(1) || "all";
+  const hash = location.hash.substring(1) || "all";
+  const allItems = document.querySelectorAll('.card');
 
-  const drinks = document.getElementsByClassName("drink");
-  const foods = document.getElementsByClassName("food");
-  const ohters = document.getElementsByClassName("other");
-  const services = document.getElementsByClassName("service");
-
-  if (hash === "all") {
-    // 모든 항목 보이기
-    [...drinks, ...foods, ...ohters, ...services].forEach(el => el.style.display = "grid");
-  } else {
-    // 모든 항목 숨기기
-    [...drinks, ...foods, ...ohters, ...services].forEach(el => el.style.display = "none");
-
-    // 해당 항목만 보이기
-    if (hash === 'drinks') {
-      Array.from(drinks).forEach(el => el.style.display = "grid");
-    } else if (hash === 'foods') {
-      Array.from(foods).forEach(el => el.style.display = "grid");
-    } else if (hash === 'services') {
-      Array.from(services).forEach(el => el.style.display = "grid");
+  allItems.forEach(el => {
+    const types = Array.from(el.classList); // 카드에 있는 클래스들
+    if (hash === "all" || types.includes(hash)) {
+      el.style.display = "grid";
+    } else {
+      el.style.display = "none";
     }
-  }
+  });
 }
+
 // 해시를 수동으로 변경하는 함수
 function setHash(hash) {
   const tabs = ['all', 'drinks', 'foods', 'services'];
@@ -150,42 +139,39 @@ function display() {
 
   firebase.database().ref('/people/data/' + number + '/menu').once('value').then((snapshot) => {
     const allcontent = document.getElementById("all");
-    // 초기화
-    [allcontent].forEach(container => {
-      container.innerHTML = '';
-      container.className = 'menu-grid page'; // page 클래스 유지
-    });
+    allcontent.innerHTML = '';
+    allcontent.className = 'menu-grid page';
+
+    function toSingular(key) {
+      return key.endsWith('s') ? key.slice(0, -1) : key;
+    }
 
     function createMenuItem(item) {
       const card = document.createElement('div');
-      card.classList.add("card");
-      card.classList.add(item.type);
+      card.classList.add("card", item.type);
       card.setAttribute('interactive', '');
       card.style.height = "300px";
       card.style.width = "100px";
-        
-    if(item.status === false) {
-      card.style.pointerEvents = 'none';
-    
-      const overlay = document.createElement('div');
-      overlay.textContent = '품절';
-      overlay.style.position = 'absolute';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.display = 'flex';
-      overlay.style.justifyContent = 'center';
-      overlay.style.alignItems = 'center';
-      overlay.style.zIndex = '10';
-      overlay.style.background = 'rgba(255, 255, 255, 0.6)';
-      overlay.style.backdropFilter = 'none'; // 혹시 inherit 되는 경우 방지
-      overlay.style.fontWeight = 'bold';
-    
-      card.style.position = 'relative';
-      card.appendChild(overlay);
-    }
 
+      if (item.status === false) {
+        card.style.pointerEvents = 'none';
+        const overlay = document.createElement('div');
+        overlay.textContent = '품절';
+        Object.assign(overlay.style, {
+          position: 'absolute',
+          top: '0', left: '0',
+          width: '100%', height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: '10',
+          background: 'rgba(255, 255, 255, 0.6)',
+          backdropFilter: 'none',
+          fontWeight: 'bold'
+        });
+        card.style.position = 'relative';
+        card.appendChild(overlay);
+      }
 
       card.onclick = function(event) {
         selectoption(event, item);
@@ -193,24 +179,22 @@ function display() {
 
       const cardimage = document.createElement('div');
       cardimage.classList.add("card-image");
-      
+
       const img = document.createElement('img');
       img.src = `${item.image}?w=400&h=300&fm=webp&q=75&auto=compress,format`;
+      Object.assign(img.style, {
+        width: '100%',
+        height: '100px',
+        objectFit: 'cover',
+        borderTopLeftRadius: '12px',
+        borderTopRightRadius: '12px',
+        filter: 'blur(8px)',
+        transition: 'filter 0.3s ease'
+      });
       img.loading = 'lazy';
-      img.decoding = 'async'; // ✅ 여기 추가
-      img.style.willChange = 'filter'; // ✅ 여기 추가
-      
-      img.style.width = '100%';
-      img.style.height = '100px';
-      img.style.objectFit = 'cover';
-      img.style.borderTopLeftRadius = '12px';
-      img.style.borderTopRightRadius = '12px';
-      img.style.filter = 'blur(8px)';
-      img.style.transition = 'filter 0.3s ease';
-      
-      img.onload = () => {
-        img.style.filter = 'none';
-      };     
+      img.decoding = 'async';
+      img.style.willChange = 'filter';
+      img.onload = () => img.style.filter = 'none';
 
       cardimage.appendChild(img);
 
@@ -223,7 +207,6 @@ function display() {
       name.textContent = item.name;
       name.style.fontWeight = 'bold';
       name.classList.add("card-header");
-
       content.appendChild(name);
 
       if (item.price) {
@@ -236,11 +219,10 @@ function display() {
       const hotIceOption = item.option?.find(option =>
         option.name.includes('HOT/ICE') && Array.isArray(option.options)
       );
-      
+
       if (hotIceOption) {
         const hasHot = hotIceOption.options.includes('hot');
         const hasIce = hotIceOption.options.includes('ice');
-      
         if (hasHot || hasIce) {
           const tagWrap = document.createElement('div');
           tagWrap.style.marginTop = '4px';
@@ -248,7 +230,7 @@ function display() {
           tagWrap.style.justifyContent = 'center';
           tagWrap.style.gap = '4px';
           tagWrap.classList.add("card-footer");
-      
+
           if (hasHot) {
             const hotTag = document.createElement('button');
             hotTag.textContent = 'HOT';
@@ -258,7 +240,7 @@ function display() {
             hotTag.setAttribute('disabled', '');
             tagWrap.appendChild(hotTag);
           }
-      
+
           if (hasIce) {
             const iceTag = document.createElement('button');
             iceTag.textContent = 'ICE';
@@ -268,11 +250,10 @@ function display() {
             iceTag.setAttribute('disabled', '');
             tagWrap.appendChild(iceTag);
           }
-      
+
           content.appendChild(tagWrap);
         }
       }
-      
 
       card.appendChild(cardimage);
       card.appendChild(content);
@@ -280,24 +261,33 @@ function display() {
     }
 
     const data = snapshot.val();
-    const allItems = [
-      ...(data.cafe.drinks || []).map(item => ({ ...item, type: 'drink' })),
-      ...(data.cafe.foods || []).map(item => ({ ...item, type: 'food' })),
-      ...(data.cafe.others || []).map(item => ({ ...item, type: 'other' })),
-      ...(data.services || []).map(item => ({ ...item, type: 'service' }))
-    ];
+    const allItems = [];
+
+    // 1. cafe 항목
+    for (const [key, items] of Object.entries(data.cafe || {})) {
+      if (Array.isArray(items)) {
+        allItems.push(...items.map(item => ({ ...item, type: toSingular(key) })));
+      }
+    }
+
+    // 2. cafe 외 나머지 항목
+    for (const [key, value] of Object.entries(data)) {
+      if (key === 'cafe') continue;
+      if (Array.isArray(value)) {
+        allItems.push(...value.map(item => ({ ...item, type: toSingular(key) })));
+      }
+    }
 
     const fragment = document.createDocumentFragment();
-
     allItems.forEach(item => {
       const card = createMenuItem(item);
       fragment.appendChild(card);
     });
-    
+
     allcontent.appendChild(fragment);
-    
   });
 }
+
 
 function selectoption(event, item) {
   event.preventDefault(); // 기본 제출 동작 방지
