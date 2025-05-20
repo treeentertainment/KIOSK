@@ -105,14 +105,15 @@ function updatePage() {
 
   const drinks = document.getElementsByClassName("drink");
   const foods = document.getElementsByClassName("food");
+  const ohters = document.getElementsByClassName("other");
   const services = document.getElementsByClassName("service");
 
   if (hash === "all") {
     // 모든 항목 보이기
-    [...drinks, ...foods, ...services].forEach(el => el.style.display = "grid");
+    [...drinks, ...foods, ...ohters, ...services].forEach(el => el.style.display = "grid");
   } else {
     // 모든 항목 숨기기
-    [...drinks, ...foods, ...services].forEach(el => el.style.display = "none");
+    [...drinks, ...foods, ...ohters, ...services].forEach(el => el.style.display = "none");
 
     // 해당 항목만 보이기
     if (hash === 'drinks') {
