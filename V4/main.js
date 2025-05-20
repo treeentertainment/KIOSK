@@ -282,6 +282,7 @@ function display() {
     const allItems = [
       ...(data.cafe.drinks || []).map(item => ({ ...item, type: 'drink' })),
       ...(data.cafe.foods || []).map(item => ({ ...item, type: 'food' })),
+      ...(data.cafe.others || []).map(item => ({ ...item, type: 'other' })),
       ...(data.services || []).map(item => ({ ...item, type: 'service' }))
     ];
 
