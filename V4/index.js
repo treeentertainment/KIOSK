@@ -39,6 +39,9 @@ firebase.auth().onAuthStateChanged((user) => {
                 if (moveable) {
                   document.getElementById("closeicon").style.display = "block";
                   document.getElementById("closebutton").style.display = "block";
+                } else {
+                  document.getElementById("closeicon").style.display = "none";
+                  document.getElementById("closebutton").style.display = "none";
                 }
                 document.getElementById("modal-name").innerHTML = state.reason.message;
                 document.getElementById("alertbox").classList.add("active");
