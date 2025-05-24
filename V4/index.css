@@ -57,8 +57,8 @@ body {
 
   /* 16:9 비율 유지하면서 너비만 설정 */
   #modal-image {
-    width: 640px;
-    height: auto;
+    width: 100%;
+    max-width: 640px;
     aspect-ratio: 16 / 9; /* 최신 브라우저에서만 */
     object-fit: contain;
     display: block;
