@@ -41,7 +41,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
         firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
           const data = snapshot.val();
-          if (data && data.enabled === true) {
+          if (data && data.access.kiosk === true) {
 
             firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
               const data = snapshot.val();
