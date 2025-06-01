@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
     firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
       const datacheck = snapshot.val();
-      if (datacheck && datacheck.enabled === true) {
+      if (datacheck && datacheck.access.kiosk === true) {
         window.localStorage.setItem('number', JSON.stringify(datacheck.store));
         firebase.database().ref('/people/data/' + datacheck.store).once('value').then((snapshot) => {
           const data = snapshot.val();
@@ -128,7 +128,7 @@ const loginpassword = () => {
 
       firebase.database().ref('/people/admin/' + fixedemail).once('value').then((snapshot) => {
           const data = snapshot.val();
-          if (data && data.enabled === true) {
+          if (data && data.access.kiosk === true) {
 
               firebase.database().ref('/people/data/' + data.store).once('value').then((snapshot) => {
                   const data = snapshot.val();
