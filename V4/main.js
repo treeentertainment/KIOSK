@@ -266,7 +266,9 @@ function display() {
     // 1. cafe 항목
     for (const [key, items] of Object.entries(data.cafe || {})) {
       if (Array.isArray(items)) {
-        allItems.push(...items.map(item => ({ ...item, type: toSingular(key) })));
+        allItems.push(...items
+          .filter(item => item) // null/undefined 제거
+          .map(item => ({ ...item, type: toSingular(key) })));
       }
     }
 
@@ -274,12 +276,15 @@ function display() {
     for (const [key, value] of Object.entries(data)) {
       if (key === 'cafe') continue;
       if (Array.isArray(value)) {
-        allItems.push(...value.map(item => ({ ...item, type: toSingular(key) })));
+        allItems.push(...value
+          .filter(item => item)
+          .map(item => ({ ...item, type: toSingular(key) })));
       }
     }
 
     const fragment = document.createDocumentFragment();
     allItems.forEach(item => {
+      if (!item || !item.type) return; // 방어 코드
       const card = createMenuItem(item);
       fragment.appendChild(card);
     });
@@ -287,7 +292,6 @@ function display() {
     allcontent.appendChild(fragment);
   });
 }
-
 
 function selectoption(event, item) {
   event.preventDefault(); // 기본 제출 동작 방지
