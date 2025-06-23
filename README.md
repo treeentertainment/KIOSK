@@ -1,10 +1,8 @@
 # TREE KIOSK SYSTEM
 
-> ## 저장소
+> ## 방문자 수
 
-[![Static Badge](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/treeentertainment/KIOSK-ANDROID)
-[![Static Badge](https://img.shields.io/badge/electron-47848F?style=for-the-badge&logo=electron&logoColor=white)](https://github.com/202420505/KIOSK-DESKTOP)
-
+[![Hits](https://hits.sh/github.com/treeentertainment/KIOSK.svg?style=for-the-badge&label=%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98)](https://hits.sh/github.com/treeentertainment/KIOSK/)
 
 > ## 서비스 상태
 
@@ -30,8 +28,8 @@
 
 > ## 다운로드
 
-[![Static Badge](https://img.shields.io/badge/download-latest-blue?style=for-the-badge&logo=github)
-](https://github.com/treeentertainment/KIOSK/releases/latest)
+[![Static Badge](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/treeentertainment/KIOSK-ANDROID/releases/latest)
+[![Static Badge](https://img.shields.io/badge/electron-47848F?style=for-the-badge&logo=electron&logoColor=white)](https://github.com/202420505/KIOSK-DESKTOP/releases/latest)
 
 > ## 업데이트 상황
 
@@ -48,7 +46,8 @@
 
 > ## 문의
 
-[moonlight10529@gmail.com](mailto:moonlight10529@gmail.com)
+[![Static Badge](https://img.shields.io/badge/Q-green?style=for-the-badge&logo=github)
+](mailto:moonlight10529@gmail.com)
 
 > ## URL
 
