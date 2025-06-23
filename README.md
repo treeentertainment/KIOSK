@@ -6,7 +6,7 @@
 
 > ## 서비스 상태
 
-[![GITHUB PAGES](https://github.com/treeentertainment/KIOSK/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/treeentertainment/KIOSK/actions/workflows/deploy.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/treeentertainment/KIOSK/deploy.yml?style=for-the-badge)
 
 > ## 프로젝트 언어
 
