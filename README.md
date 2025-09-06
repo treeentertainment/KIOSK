@@ -41,12 +41,12 @@
 
 > ## 저작권
 
-[![Static Badge](https://img.shields.io/badge/Q-green?style=for-the-badge&logo=github)
-](https://github.com/202420505)
+[![Static Badge](https://img.shields.io/badge/M-blue?style=for-the-badge&logo=github)
+](https://github.com/channel101)
 
 > ## 문의
 
-[![Static Badge](https://img.shields.io/badge/Q-green?style=for-the-badge&logo=github)
+[![Static Badge](https://img.shields.io/badge/M-blue?style=for-the-badge&logo=github)
 ](mailto:contact@treeentertainment.tech)
 
 > ## URL
