@@ -47,14 +47,8 @@
 > ## 문의
 
 [![Static Badge](https://img.shields.io/badge/Q-green?style=for-the-badge&logo=github)
-](mailto:moonlight10529@gmail.com)
+](mailto:contact@treeentertainment.tech)
 
 > ## URL
 
 [https://treekiosk.pages.dev](https://treekiosk.pages.dev)
-
-> ## License
-
-This project is licensed under a **custom proprietary license**.  
-Unauthorized use, modification, or distribution is prohibited.  
-To obtain a commercial license, see [LICENSE.md](./LICENSE.md) or contact [moonlight10529@gmail.com].
