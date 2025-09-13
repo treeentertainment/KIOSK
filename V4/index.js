@@ -1,6 +1,6 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBsUla3VNIn6wccJ43Ui5Dzw9mwIAHcdKE",
-  authDomain: "auth.appwebsite.tech",
+  authDomain: "treeentertainment.firebaseapp.com",
   databaseURL: "https://treeentertainment-default-rtdb.firebaseio.com",
   projectId: "treeentertainment",
   storageBucket: "treeentertainment.appspot.com",
