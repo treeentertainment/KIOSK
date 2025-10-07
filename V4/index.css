@@ -43,31 +43,37 @@ body {
     width: 300px;
 }
 
-  .modal-container {
+#alertbox .modal-body {
+  max-height: 80vh; /* 화면 80%까지만 모달 높이 허용 */
+  overflow-y: auto; /* 내용이 넘치면 스크롤 */
+}
+
+.modal-container {
     display: inline-block;
     max-width: 90%;
     background: white;
     border-radius: 8px;
     padding: 1rem;
-  }
+}
 
-  .modal-body .content {
-    text-align: center; /* 이미지 중앙 정렬 */
-  }
+.modal-body .content {
+text-align: center; /* 이미지 중앙 정렬 */
+}
 
-  /* 16:9 비율 유지하면서 너비만 설정 */
-  #modal-image {
+/* 16:9 비율 유지하면서 너비만 설정 */
+#modal-image {
     width: 100%;
     max-width: 640px;
+    max-height: 60vh; /* 화면의 60% 높이까지만 */
     aspect-ratio: 16 / 9; /* 최신 브라우저에서만 */
     object-fit: contain;
     display: block;
     margin: 0 auto;
-  }
+}
 
-  /* 반응형으로 줄고 싶다면 width: 100% + max-width 사용 */
-  /*
-  #modal-image {
+/* 반응형으로 줄고 싶다면 width: 100% + max-width 사용 */
+/*
+#modal-image {
     width: 100%;
     max-width: 640px;
     aspect-ratio: 16 / 9;
@@ -75,5 +81,5 @@ body {
     object-fit: contain;
     display: block;
     margin: 0 auto;
-  }
-  */
+}
+*/
