@@ -115,8 +115,8 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
 });
   
 const loginpassword = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((result) => {
