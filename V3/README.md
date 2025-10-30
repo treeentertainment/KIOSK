@@ -22,15 +22,3 @@
 
  - [x] 이미지 로딩 속도 개선
  - [X] apk 및 exe 만들기
-
-> ## 저작권
-
-[@202420505](https://github.com/202420505)
-
-> ## 문의
-
-[moonlight10529@gmail.com](mailto:moonlight10529@gmail.com)
-
-> ## URL
-
-[https://treekiosk.pages.dev](https://treekiosk.pages.dev)
